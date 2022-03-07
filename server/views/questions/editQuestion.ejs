@@ -1,0 +1,25 @@
+<%- include('../components/header') %>
+
+        <div class="container">
+
+            <form method="POST" action="/edit/question/<%=result.id%> ">
+
+                <div>
+                    <p>The Question :</p>
+                    <input type="text" name="question" value="<%=result.question%>" class="form-control" required />
+                </div>
+                <br>
+                <div>
+                    <p>The Description : </p>
+                    <textarea  rows="10" cols="20" name="description" class="form-control"
+                        required><%=result.description%></textarea>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-primary  ">save question </button>
+                </div>
+            </form>
+            <br>
+        </div>
+
+            <%- include('../components/footer') %>
