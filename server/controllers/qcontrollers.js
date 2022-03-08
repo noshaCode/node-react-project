@@ -33,7 +33,8 @@ try{
     const answer = await Answer.find({ question }).populate('user').sort({createdAt:-1});
     //console.log(answer);
     if (question) {
-      res.render("questions/readQuestion", { result: question, answerToEdit:'',answer: answer, currentUserId ,pageTitle:question.question});
+    //   res.render("questions/readQuestion", { result: question, answerToEdit:'',answer: answer, currentUserId ,pageTitle:question.question});
+    res.json({question,answer})
    } else {
        res.redirect("/")
     }
@@ -56,9 +57,9 @@ const createQuestion = async (req, res) => {
         await Question.create({
             question: body.question,
             description: body.description,
-            user: user.id
+            // user: user.id
         })
-        res.redirect("/")
+        res.status(201).send('created')
     } catch (error) {
         console.error(error)
         const errorsList = handleQuestionsError(error)
@@ -73,7 +74,7 @@ const updateQuestion = async (req, res) => {
     try {
         const result = await Question.findById(id)
 
-        res.render("questions/editQuestion", {result, pageTitle: "Edit Questions"})
+        res.json("questions/editQuestion", {result, pageTitle: "Edit Questions"})
 
     } catch (err) {
         res.render("questions/editQuestion", { pageTitle:"Edit Question",err: err })

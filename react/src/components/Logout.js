@@ -11,7 +11,12 @@ export default function Logout() {
         navigate('/')
 
    },[]) 
+  //  let user= JSON.parse(localStorage.getItem("user-info"))
+  //  function Logout(){
+    localStorage.clear();
 
+  //  }
+  
 
   return (
     <div>Logout</div>

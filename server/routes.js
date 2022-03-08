@@ -14,7 +14,7 @@ router.get("/",allQuestions)
 router.get("/question/:id", readQuestion)
 
 router.get("/new/question",access,showFormQuestion)
-router.post("/new/question",access, createQuestion)
+router.post("/new/question", createQuestion)
 
 router.get("/edit/question/:id",access,updateQuestion)
 router.post("/edit/question/:id",access,questionWithEdit)

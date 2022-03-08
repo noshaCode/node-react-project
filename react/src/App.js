@@ -24,7 +24,7 @@ function App() {
           <Route path="logout" element={<Logout />} />
           <Route path="questions">
             <Route index element={<QuestionsList />} />
-            <Route path=":id" element={<ReadQuestion/>} />
+            <Route path=":id" element={<ReadQuestion/>} /> 
             <Route path="new" element={<CreateQuestion />} />
           </Route>
         
