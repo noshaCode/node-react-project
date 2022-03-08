@@ -8,6 +8,7 @@ import NotFound from './components/NotFound';
 import QuestionsList from './components/QuestionsList';
 import ReadQuestion from './components/ReadQuestion';
 import Signup from './components/Signup';
+import EditQuestion from './components/EditQuestion';
 
 export const UserContext = React.createContext(null)
 
@@ -23,9 +24,11 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="logout" element={<Logout />} />
           <Route path="questions">
-            <Route index element={<QuestionsList />} />
-            <Route path=":id" element={<ReadQuestion/>} /> 
-            <Route path="new" element={<CreateQuestion />} />
+                <Route index element={<QuestionsList />} />
+                <Route path=":id" element={<ReadQuestion/>} /> 
+                
+                <Route path="new" element={<CreateQuestion/>} />
+                <Route path="edit/:id" element={<EditQuestion/>} />
           </Route>
         
           <Route path="*" element={<NotFound />} />

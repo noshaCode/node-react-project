@@ -23,15 +23,29 @@ function QuestionsList(props) {
 
   return (
     <div>
-        {questions && questions.map((question)=> {
+        {questions && questions.map((item)=> {
             return (
-                <div key={question._id}>
-                    <Link to={`/questions/${question._id}`}>
-                    <h3>{question.question}</h3>
-                    </Link>
-                    <p>{question.description}</p>
-                    {/* <p>Asked by: {question.user.name}</p> */}
+
+                <div key={item._id} className="col-sm-6 all-card">
+                <div className="card">
+                    <div className="card-body">
+                        <h3 className="card-title"><Link to={`/questions/${item._id}`}>
+                                { item.question }
+                            </Link></h3>
+                        <p className="card-text">
+                            { item.description }
+                        </p>
+                        <div className=" create-date">
+                        <p>Created By: { item?.user?.name }
+                            <br/>
+                            { new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'short' }).format(new Date(item.updatedAt)) }
+                        </p>
+                        </div>
+                    </div>
                 </div>
+                </div>
+
+
             )
         })}
     </div>

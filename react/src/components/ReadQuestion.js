@@ -1,5 +1,5 @@
 import React, { useContext, useEffect ,useState} from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams  } from 'react-router-dom'
 import { UserContext } from '../App'
 import axios from '../axios'
 
@@ -28,15 +28,31 @@ export default function ReadQuestion() {
       }
   }
 
+  const handleEdit = () => {
+    navigate(
+        `/questions/edit/${params.id}`,{
+        state: {
+          question: response.question.question, 
+          description: response.question.description
+        }
+      }
+    )
+  }
+
+
   return (
     <div>
     {response && 
-    <>
-    <p>{response.question.question} </p>
-    <p>{response.question.description} </p>
-    </>
-  }
+      <>
+        <p>{response.question.question} </p>
+        <p>{response.question.description} </p>
+        <button onClick={handleEdit}>Edit Question</button>
+      </>
+    }
+
   </div>
+
+ 
     
 
   )

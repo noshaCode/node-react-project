@@ -89,10 +89,11 @@ const questionWithEdit = (req, res) => {
 
    Question.findByIdAndUpdate(id, body)
    .then((result)=>{
-        res.redirect(`/question/${id}`);
+        res.json(result)
    })
    .catch((err)=>{
        res.render("questions/editQuestion",{err : err, pageTitle:"Edit Question" })
+        res.status(400).send()
    })
 
 
