@@ -22,7 +22,7 @@ function QuestionsList(props) {
     }
 
   return (
-    <div>
+    <div className='row'>
         {questions && questions.map((item)=> {
             return (
 

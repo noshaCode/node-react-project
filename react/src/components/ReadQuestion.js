@@ -46,7 +46,7 @@ export default function ReadQuestion() {
       <>
         <p>{response.question.question} </p>
         <p>{response.question.description} </p>
-        <button onClick={handleEdit}>Edit Question</button>
+        <button onClick={handleEdit} className="btn btn-primary  class1 ">Edit Question</button>
       </>
     }
 
