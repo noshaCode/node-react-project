@@ -105,10 +105,10 @@ const deleteQuestion = (req, res) => {
 
     Question.findByIdAndDelete(id)
         .then((result) => {
-            res.redirect("/");
+            res.status(200).send();
         })
         .catch((err) => {
-            res.redirect(`/question/${id}`);
+            res.status(400).send();
         })
 }
 

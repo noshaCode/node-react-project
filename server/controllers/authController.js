@@ -87,5 +87,5 @@ module.exports = {
     logInFunc,
     logOutFunc,
     signupFormSubmit,
-    allUsers
+    // allUsers
 }

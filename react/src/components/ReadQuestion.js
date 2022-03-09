@@ -38,6 +38,17 @@ export default function ReadQuestion() {
       }
     )
   }
+  const handleDelete =()=>{
+    axios.get(`/delete/question/${params.id}`)
+    .then(()=>{
+      navigate(`/`)
+    })
+    .catch((e)=>{
+      console.log(e)
+    })
+  
+
+  }
 
 
   return (
@@ -47,6 +58,7 @@ export default function ReadQuestion() {
         <p>{response.question.question} </p>
         <p>{response.question.description} </p>
         <button onClick={handleEdit} className="btn btn-primary  class1 ">Edit Question</button>
+        <button onClick={handleDelete} className="btn btn-primary  class1 ">Delete Question</button>
       </>
     }
 

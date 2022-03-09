@@ -1,19 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useForm } from "react-hook-form"
 import axios from "../axios"
 import { useNavigate } from 'react-router-dom'
 
 
-// const schema = yup.object().shape({
-//   question:yup.string().required,
-//   description:yup.string().required,
-// })
+
 
 
 
 export default function CreateQuestion() {
   const navigate = useNavigate()
-  const {user} = useContext(UserContext)
+  // const {user} = useContext(UserContext)
   const { handleSubmit, register, formState: { errors } } = useForm();
   
   

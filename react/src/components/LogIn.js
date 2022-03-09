@@ -1,9 +1,12 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext} from 'react';
 import axios from '../axios';
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../App'
+
 
 export default function LogIn() {
   const navigate = useNavigate()
+  const {setUser} = useContext(UserContext)
 
 const [loginResponse,setLoginResponse] = useState({
   email: '',
@@ -29,6 +32,7 @@ const [loginResponse,setLoginResponse] = useState({
             console.log("are we here")
             let token = response.data.token;
             localStorage.setItem('user', token)
+            setUser(response.data.result)
             navigate('/')
           })
           .catch( err => {
