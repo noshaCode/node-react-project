@@ -55,7 +55,7 @@ export default function CreateQuestion() {
         </div>
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn btn-primary  class1 ">Submit</button>
         </div>
 
       </form>
