@@ -9,7 +9,7 @@ import ReadQuestion from './components/ReadQuestion';
 import Signup from './components/Signup';
 import EditQuestion from './components/EditQuestion';
 import LogIn from './components/LogIn'
-
+import AddAnswer from './components/AddAnswer'
 
 
 
@@ -34,6 +34,8 @@ function App() {
           <Route path="questions">
                 <Route index element={<QuestionsList />} />
                 <Route path=":id" element={<ReadQuestion/>} /> 
+
+          <Route path="addanswer/:id" element={<AddAnswer/>} /> 
                 
                 <Route path="new" element={<CreateQuestion/>} />
                 <Route path="edit/:id" element={<EditQuestion/>} />
