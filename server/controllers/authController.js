@@ -7,98 +7,85 @@ const maxAge = 8 * 24 * 60 * 60; // 8 days in seconds
 const createJwtToken = (id) => jwt.sign({ id }, "my password", { expiresIn: maxAge })
 
 
+
+// allUser function only for test
+const allUsers = async (req, res) => {
+    await User.find()
+        .then((result) => {
+            res.status(200).send(result);
+        })
+        .catch((err) => {
+            res.status(400).send("unable to find users");
+        });
+};
+
+
 // GET Request to show signup form
 const showSignupForm = (req, res) => {
 
-    res.render('auth/signup',{err: "", pageTitle:"Signup"})
+    res.redirect('/')
 
 }
 
-//POST Request for signup Form Submit
 const signupFormSubmit = async (req, res) => {
-    const body = req.body
-    const password = body.password;
-    const repeatPassword = body.repeatPassword;
-    try {
-        if (repeatPassword !== password) {
-            throw new Error("repeatPasswordError")
-        }
-        const user = await User.create({
-            name: body.name,
-            email: body.email,
-            password: body.password
-        });
-        // console.log(token)
+    await User.findOne({ email: req.body.email })
+        .then(async result => {
+            if (result) {
+                return res.status(400).send("Email already exists")
+            }
+           // console.log(req)
+            let user = {
+                ...req.body,
+                password: await bcrypt.hash(req.body.password, 12)
+            }
+            let newUser = new User(user);
 
-
-        const token = createJwtToken(user.id)
-
-        res.cookie("jwtToken", token, { httpOnly: true, maxAge: maxAge * 1000 })
-        res.redirect('/')
-
-    } catch(err) {
-       console.error("oops an error",err)
-       const errorsList = handleSignupError(err)
-       res.render('auth/signup',{err: errorsList, pageTitle:"Signup"})
-
-    }
-}
-
+            newUser.save()
+                .then(result => {
+                    res.status(200).send('Saved in database')
+                })
+                .catch(err => {
+                   // console.log(err)
+                    res.status(401).send(err);
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(402).send(err)
+        })
+};
 ///////////////////////////////////////
-//start LogIn / LogOut Functions
+//start LogIn Fun
 ///////////////////////////////////////
 const logInFunc = async (req, res) => {
-    if (req.method === 'GET') {
-
-        res.render('auth/login', { pageTitle: 'Log In', err: "" });
-    };
-
-    if (req.method === 'POST') {
-
-        const { email, password } = req.body;
-
-        if (email == '' || password == '') {
-            res.render('auth/login', { pageTitle: 'Log In', err: " Please Fill all Fields" })
-
-        } else {
-            const user = await User.findOne({ email: email });
-
-            if (!user) {
-                res.render('auth/login', { pageTitle: 'Log In',err: "User doesn't exist yet. Register first please!" })
-            } else {
-                const matchedPassword = await bcrypt.compare(password, user.password)
-
-                if (!matchedPassword) {
-                    res.render('auth/login', {  pageTitle: 'Log In',err: "Password is not correct" })
-                } else {
-                    /// now you can log in
-                    User.logIn(email, password)
-                        .then(user => {
-                            const token = createJwtToken(user.id);
-                            res.cookie('jwtToken', token, { httpOnly: true, maxAge: maxAge * 1000 });
-                            res.redirect('/');
-                        })
-                        .catch(err => console.log(err))
-
-                }
-
+    await User.findOne({ email: req.body.email })
+        .then(async result => {
+           // console.log(req)
+            if (!result) {
+                return res.status(400).send("User is not exist please sign up first")
             }
+            if (!bcrypt.compareSync(req.body.password, result.password)) {
+                return res.status(400).send("Password is not correct")
+            }
+            const token = await jwt.sign({ user: result }, 'jwt-react', { expiresIn: '1d' });
+            res.status(200).send({ result, token })
+           // console.log(result)
+        })
+        .catch(err => {
+            //console.log(err)
+            res.status(400).send(err)
+        })
+};
 
-
-
-
-        };
-    }
-}
 const logOutFunc = (req, res) => {
     // res.cookie('jwtToken', '', {maxAge: 1});
-    res.clearCookie('jwtToken');
-    res.redirect('/');
+  //  res.clearCookie('jwtToken');
+   // res.redirect('/');
 }
 
 module.exports = {
-    showSignupForm,
     logInFunc,
     logOutFunc,
-    signupFormSubmit
+    signupFormSubmit,
+    allUsers
 }
