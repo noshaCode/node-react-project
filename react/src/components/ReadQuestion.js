@@ -21,12 +21,17 @@ export default function ReadQuestion() {
     const getQuestion = async() => {
       try {
           const readQuestion = await axios.get(`/question/${params.id}`);
-          console.log("read",readQuestion.data)
+          console.log("read",readQuestion.data.answer)
           setResponse(readQuestion.data)
+
+          //const readAnswer = await axios.get(`/question/${params.id}`);
+
       } catch (e) {
           console.error('Error', e)
       }
   }
+
+
 
   const handleEdit = () => {
     navigate(
@@ -39,6 +44,19 @@ export default function ReadQuestion() {
     )
   }
 
+  
+  const handleAddAnswer = () => {
+    navigate(
+        `/questions/addanswer/${params.id}`,{
+        state: {
+          question: response.question.question, 
+          description: response.question.description
+        }
+      }
+    )
+  }
+
+
 
   return (
     <div>
@@ -47,10 +65,46 @@ export default function ReadQuestion() {
         <p>{response.question.question} </p>
         <p>{response.question.description} </p>
         <button onClick={handleEdit}>Edit Question</button>
-      </>
-    }
 
+        
+       <p>{response.answer.answer} </p>
+      
+    
+
+     <button   onClick={handleAddAnswer} >Add Answer </button>
+
+     <div>
+        {response.answer && response.answer.map((item)=> {
+            return (
+
+                <div key={item._id} className="col-sm-6 all-card">
+                <div className="card">
+                    <div className="card-body">
+                        
+                        <p className="card-text">
+                            { item.answer }
+                        </p>
+                        <div className=" create-date">
+                        <p>Created By: { item?.user?.name }
+                            <br/>
+                            { new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'short' }).format(new Date(item.updatedAt)) }
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+
+            )
+        })}
+    </div>
+
+
+     </>
+
+     }
   </div>
+
 
  
     

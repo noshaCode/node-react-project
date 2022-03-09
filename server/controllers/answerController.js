@@ -5,23 +5,25 @@ const {handleAnswersError}=require("./errorHandling")
 
 
 const AnswerForm = async (req, res) => {
-       // console.log("-------------------------44444444----------");          
-
+       console.log("-------------------------44444444----------");          
+       console.log(req.params.id);
+       
         const body = req.body
         const user = res.locals.user
         const id = req.params.id; 
 
         const question=await Question.findById(id).populate('user'); 
 
-        console.log(req.params,question);
         try {
             await Answer.create({
                 answer:body.answer,
-                user: user.id ,
+               // user: user.id ,
                  question: question       
             })
-            
-            res.redirect(`/question/${id}`)
+          
+           //res.redirect(`/question/${id}`)
+           res.status(200).send('created')
+
         } catch (error) {
             console.error(error)
            
