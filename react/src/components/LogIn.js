@@ -1,57 +1,55 @@
-// import React from 'react'
+import React, { useState,useEffect } from 'react';
+import axios from '../axios';
+import { useNavigate } from 'react-router-dom'
 
-// export default function LogIn() {
-//   return (
-//     <div>Log in</div>
-//   )
-// }
+export default function LogIn() {
+  const navigate = useNavigate()
 
+const [loginResponse,setLoginResponse] = useState({
+  email: '',
+  password: '',
+  result: ''
+})
 
-
-
-import React, { Component } from 'react';
-import axios from 'axios';
-
-export default class LogIn extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      result: ''
-    }
+  const handleChange = (e) => {
+    setLoginResponse((prevState) =>({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
   }
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value})
-  }
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let data = {
-      email: this.state.email,
-      password: this.state.password
+      email: loginResponse.email,
+      password: loginResponse.password
     }
-    axios.post("http://localhost:4000/login", data)
+    console.log("data", data)
+    axios.post("/login", data)
           .then( response => {
+            console.log("are we here")
             let token = response.data.token;
             localStorage.setItem('user', token)
-            /////////////////////////////////////////////
-            this.props.history.push('/')
+            navigate('/')
           })
           .catch( err => {
-            this.setState({ result: err.response.data })
+            console.log("are we here2", err)
+
+            setLoginResponse((prevState) =>({
+              ...prevState,
+              result: err
+            }))
           })
   }
-  render() {
+ 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input name='email' type="text" placeholder='email' onChange={this.handleChange} />
-          <input name='password' type="password" placeholder='password' onChange={this.handleChange} />
-          <input type="submit" value='Log in'  onSubmit={this.handleSubmit} />
+        <form onSubmit={handleSubmit}>
+          <input name='email' type="text" placeholder='email' onChange={handleChange} />
+          <input name='password' type="password" placeholder='password' onChange={handleChange} />
+          <input type="submit" value='Log in'  onSubmit={handleSubmit} />
         </form>
-        { this.state.result ? this.state.result : null }
+        { loginResponse.result ? loginResponse.result : null }
       </div>
     )
-  }
+  
 }
-

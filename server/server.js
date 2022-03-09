@@ -9,8 +9,8 @@ const authRouter = require("./auth-routes")
 
 const app = express();
 //const databaseUrlLocal = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@localhost:27017/${process.env.DB_NAME}?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false`
-const databaseUrMongo = 'mongodb://localhost/jwt-react'
-//`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pwc4b.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+// const databaseUrMongo = 'mongodb://localhost/jwt-react'
+const databaseUrMongo = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pwc4b.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 app.use(cors({
     origin: '*'

@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function CreateQuestion() {
   const navigate = useNavigate()
-
+  const {user} = useContext(UserContext)
   const { handleSubmit, register, formState: { errors } } = useForm();
   
   
@@ -55,7 +55,7 @@ export default function CreateQuestion() {
         </div>
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn btn-primary  class1 ">Submit</button>
         </div>
 
       </form>

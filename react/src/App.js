@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import CreateQuestion from './components/CreateQuestion';
 import Layout from './components/Layout';
 import Logout from './components/Logout';
@@ -25,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<QuestionsList />} />
-          <Route path="signup" element={<Signup />} />
+          <Route path="signup" element={<Signup setUser={setUser} />} />
           <Route path="logout" element={<Logout />} />
           <Route path="login" element={<LogIn />} />
 
