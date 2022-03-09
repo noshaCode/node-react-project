@@ -9,15 +9,15 @@ const createJwtToken = (id) => jwt.sign({ id }, "my password", { expiresIn: maxA
 
 
 // allUser function only for test
-const allUsers = async (req, res) => {
-    await User.find()
-        .then((result) => {
-            res.status(200).send(result);
-        })
-        .catch((err) => {
-            res.status(400).send("unable to find users");
-        });
-};
+// const allUsers = async (req, res) => {
+//     await User.find()
+//         .then((result) => {
+//             res.status(200).send(result);
+//         })
+//         .catch((err) => {
+//             res.status(400).send("unable to find users");
+//         });
+// };
 
 
 // GET Request to show signup form

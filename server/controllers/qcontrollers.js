@@ -57,7 +57,7 @@ const createQuestion = async (req, res) => {
         await Question.create({
             question: body.question,
             description: body.description,
-            // user: user.id
+            user: user.id
         })
         res.status(201).send('created')
     } catch (error) {
