@@ -9,6 +9,10 @@ import QuestionsList from './components/QuestionsList';
 import ReadQuestion from './components/ReadQuestion';
 import Signup from './components/Signup';
 import EditQuestion from './components/EditQuestion';
+import LogIn from './components/LogIn'
+
+
+
 
 export const UserContext = React.createContext(null)
 
@@ -23,6 +27,11 @@ function App() {
           <Route index element={<QuestionsList />} />
           <Route path="signup" element={<Signup />} />
           <Route path="logout" element={<Logout />} />
+          <Route path="login" element={<LogIn />} />
+
+          
+
+
           <Route path="questions">
                 <Route index element={<QuestionsList />} />
                 <Route path=":id" element={<ReadQuestion/>} /> 
