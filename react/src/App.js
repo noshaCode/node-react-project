@@ -12,7 +12,6 @@ import LogIn from './components/LogIn'
 import AddAnswer from './components/AddAnswer'
 
 
-
 export const UserContext = React.createContext(null)
 
 function App() {
@@ -39,6 +38,7 @@ function App() {
                 
                 <Route path="new" element={<CreateQuestion/>} />
                 <Route path="edit/:id" element={<EditQuestion/>} />
+               
           </Route>
         
           <Route path="*" element={<NotFound />} />
