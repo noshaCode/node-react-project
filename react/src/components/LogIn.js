@@ -53,7 +53,7 @@ const [loginResponse,setLoginResponse] = useState({
           <input name='password' type="password" placeholder='password'className="form-control" onChange={handleChange} />
           <input type="submit" value='Log in' className="btn btn-primary  class1 " onSubmit={handleSubmit} />
         </form>
-        <img className='img-login' src='./images/login.jpg'></img>
+        <img className='img-login' src='./images/login.png'></img>
         { loginResponse.result ? loginResponse.result : null }
       </div>
     )
