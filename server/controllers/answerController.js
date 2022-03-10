@@ -5,8 +5,8 @@ const {handleAnswersError}=require("./errorHandling")
 
 
 const AnswerForm = async (req, res) => {
-       console.log("-------------------------44444444----------");          
-       console.log(req.params.id);
+      // console.log("-------------------------44444444----------");          
+       //console.log(req.params.id);
        
         const body = req.body
         const user = res.locals.user
@@ -34,28 +34,28 @@ const AnswerForm = async (req, res) => {
 
 
 const UpdateAnswer = async (req, res) => {
-  
+  //console.log(req[-1])
     const body = req.body
     const user = res.locals.user
     const id = req.params.id; 
 
     const currentUserId = user ? user.id : "";
 
-    console.log(req.params.id);
+    //console.log(req.params.id);
         
     try {
         const answerToEdit = await Answer.findById(id)
-        // console.log("-----------------------------------------------"); 
+        console.log("-----------------------------------------------"); 
          const questionId = answerToEdit.question.toString();
         const question=await Question.findById(questionId).populate('user'); 
         const answer = await Answer.find({ question }).populate('user').sort({createdAt:-1});
         
-  console.log(question , answer);
-        res.render("questions/readQuestion", {result:question, answerToEdit,answer,currentUserId ,pageTitle:question.question})
-
+  //console.log(question , );
+       // res.render("questions/readQuestion", {result:question, answerToEdit,answer,currentUserId ,pageTitle:question.question})
+       res.json({question,answerToEdit})
     } catch (err) {
-        
-    res.redirect(`/question/${questionId}`)
+      console.log(err)  
+    //res.redirect(`/question/${questionId}`)
 
     }
 
@@ -89,10 +89,12 @@ const DeleteAnswer = (req,res)=> {
     Answer.findByIdAndDelete(id)
     .then((result)=>{
         const questionId = result.question.toString()
-     res.redirect(`/question/${questionId}`);
+    // res.redirect(`/question/${questionId}`);
+     res.status(200).send();
     })
     .catch((err)=>{
-        res.redirect(`/answer/${id}`);
+       // res.redirect(`/answer/${id}`);
+        res.status(400).send();
     })
 }
 

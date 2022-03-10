@@ -63,6 +63,7 @@ a{
 a.class1:hover {
     font-size:130%;
     color: #ff7979;
+  
 }
 
 .login-pic{
@@ -101,3 +102,20 @@ margin-bottom: 5px;
 .error {
     color: red;
 }
+
+.class1{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.class2{
+    margin-left: 7rem;
+    margin-top: 1rem;
+  }
+
+  .q-card{
+   margin-top: 4rem;
+   width: 30rem;
+   padding: 2rem;
+   
+  }

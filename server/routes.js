@@ -29,10 +29,10 @@ const Answer = require("./controllers/answerController")
 router.post("/new/answer/:id",Answer.AnswerForm)
 
 
-router.get("/edit/answer/:id",access,Answer.UpdateAnswer)
-router.post("/edit/answer/:id",access,Answer.AnswerWithEdit)
+router.get("/edit/answer/:id",Answer.UpdateAnswer)
+router.post("/edit/answer/:id",Answer.AnswerWithEdit)
 
-router.get('/delete/answer/:id',access, Answer.DeleteAnswer)
+router.get('/delete/answer/:id', Answer.DeleteAnswer)
 
 
 

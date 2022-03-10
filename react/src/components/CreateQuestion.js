@@ -20,7 +20,7 @@ export default function CreateQuestion() {
     try{
       
       const response = await axios.post("/new/question",  values)
-      console.log('response', response.data)
+     console.log('response', response.data)
       navigate('/')
     } catch(e){
       console.log(e)
@@ -70,4 +70,3 @@ export default function CreateQuestion() {
 //       console.error('Error', e)
 //   }
 // } */}
-
