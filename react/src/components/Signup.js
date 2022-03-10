@@ -50,9 +50,10 @@ export default function SignUp () {
         <div>
           <button type="submit" className="btn btn-primary  class1 ">Submit</button>
         </div>
-
+        <img className='img-signup' src='./images/test.jpg'></img>
+        
       </form>
-
+      
     </div>
   )}
 
