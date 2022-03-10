@@ -26,21 +26,20 @@ const [loginResponse,setLoginResponse] = useState({
       email: loginResponse.email,
       password: loginResponse.password
     }
-    console.log("data", data)
     axios.post("/login", data)
           .then( response => {
-            console.log("are we here")
             let token = response.data.token;
-            localStorage.setItem('user', token)
+            let user = response.data.result;
+            localStorage.setItem('token', token)
+            localStorage.setItem('user', JSON.stringify(user))
             setUser(response.data.result)
             navigate('/')
           })
           .catch( err => {
-            console.log("are we here2", err)
-
+            console.log("login error", err)
             setLoginResponse((prevState) =>({
               ...prevState,
-              result: err
+              result: err.message
             }))
           })
   }

@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { Link } from 'react-router-dom';
+import { UserContext } from '../App';
 import axios from '../axios';
 
 function QuestionsList(props) {
-
+    const { user } = useContext(UserContext)
     const [questions, setQuestions] = useState([]);
 
     useEffect(()=> {
@@ -23,7 +24,7 @@ function QuestionsList(props) {
 
   return (
     <div className='row'>
-         <h1> Q&A Community</h1>
+         <h1> {user && <>Welcome <span className='username'>{user.name}</span> to </>} Q&A Community</h1>
         {questions && questions.map((item)=> {
             return (
 

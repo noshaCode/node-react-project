@@ -20,7 +20,7 @@ export default function SignUp () {
       
       const response = await axios.post("/signup",  values)
       console.log('response', response.data)
-      navigate('/')
+      navigate('/login')
     } catch(e){
       console.log(e)
 
