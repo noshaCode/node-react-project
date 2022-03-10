@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CreateQuestion from './components/CreateQuestion';
 import Layout from './components/Layout';
@@ -14,16 +14,23 @@ import EditAnswer from './components/EditAnswer'
 
 
 export const UserContext = React.createContext(null)
+export const DarkModeContext = React.createContext(null)
 
 function App() {
 
   const [user, setUser] = useState(null);
+  const [darkMode, setDarkMode] = useState(false)
 
-  return (
+  useEffect(()=> {
+    const localUser = localStorage.getItem('user');
+    if (localUser) {
+      setUser(JSON.parse(localUser))
+    }
+  },[])
 
-    
+  return ( 
     <UserContext.Provider value={{user:user, setUser: setUser}}>
-     
+      <DarkModeContext.Provider value={{darkMode, setDarkMode}}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<QuestionsList />} />
@@ -49,6 +56,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      </DarkModeContext.Provider>
     </UserContext.Provider>
   );
 }

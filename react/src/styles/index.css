@@ -21,6 +21,15 @@ body {
   padding: 50px;
 }
 
+.dark {
+  background-color: #211919;
+  color: #fafafa;
+}
+
+.dark .card {
+  background-color: #2b2727;
+}
+
 .custom-container.show-nav {
   transform: rotate(-20deg);
 }
@@ -142,4 +151,10 @@ nav a:hover {
 .content p {
   color: #333;
   line-height: 1.5;
+}
+
+
+.username {
+  color: #b64f4f;
+  font-weight: 600;
 }

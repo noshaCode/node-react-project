@@ -36,7 +36,7 @@ const signupFormSubmit = async (req, res) => {
            // console.log(req)
             let user = {
                 ...req.body,
-                password: await bcrypt.hash(req.body.password, 12)
+                password: req.body.password
             }
             let newUser = new User(user);
 
@@ -68,7 +68,10 @@ const logInFunc = async (req, res) => {
                 return res.status(400).send("Password is not correct")
             }
             const token = await jwt.sign({ user: result }, 'jwt-react', { expiresIn: '1d' });
-            res.status(200).send({ result, token })
+            res.status(200).send({ result: {
+                name: result.name,
+                id: result._id
+            }, token })
            // console.log(result)
         })
         .catch(err => {
