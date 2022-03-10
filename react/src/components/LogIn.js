@@ -47,10 +47,11 @@ const [loginResponse,setLoginResponse] = useState({
  
     return (
       <div>
+        <h3>Login</h3>
         <form onSubmit={handleSubmit}>
-          <input name='email' type="text" placeholder='email' onChange={handleChange} />
-          <input name='password' type="password" placeholder='password' onChange={handleChange} />
-          <input type="submit" value='Log in'  onSubmit={handleSubmit} />
+          <input name='email' type="text" placeholder='email' className="form-control" onChange={handleChange} />
+          <input name='password' type="password" placeholder='password'className="form-control" onChange={handleChange} />
+          <input type="submit" value='Log in' className="btn btn-primary  class1 " onSubmit={handleSubmit} />
         </form>
         { loginResponse.result ? loginResponse.result : null }
       </div>

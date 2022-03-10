@@ -98,16 +98,38 @@ export default function ReadQuestion() {
     <div>
     {response && 
       <>
+
       <div className="card q-card">
         <h3  className="card-title">{response.question.question} </h3>
         <p className="card-text">{response.question.description} </p>
 
      </div>
 
+       <br/>
+      <div className="form-control">
+        
+        <p>{response.question.question} </p>
+        <p>{response.question.description} </p>
+
+        </div>
+        <br/>
+
+
         <button onClick={handleEdit} className="btn btn-primary  class1 ">Edit Question</button>
 
         <button onClick={handleDelete} className="btn btn-primary  class1 ">Delete Question</button>
       
+
+
+
+
+        
+       <p>{response.answer.answer} </p>
+      
+    
+
+     <button   onClick={handleAddAnswer} className="btn btn-primary  class1" >Add Answer </button>
+
 
      <button  onClick={handleAddAnswer}   className="btn btn-primary  class2"> Add Answer </button>
  

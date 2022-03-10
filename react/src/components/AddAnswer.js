@@ -28,6 +28,7 @@ export default function ReadQuestion() {
         console.log("read",readQuestion.data.answer)
         setResponse(readQuestion.data)
 
+
     } catch (e) {
         console.error('Error', e)
     }
@@ -45,6 +46,38 @@ export default function ReadQuestion() {
     }
   };
 
+
+    const { handleSubmit, register, formState: { errors } } = useForm();
+    
+    
+    const onSubmit = async (values) =>{ 
+      
+      //call post
+      try{
+        console.log(values)
+        const response = await axios.post(`/new/answer/${params.id}`,  values)
+        console.log('response', response.data)
+        navigate(`/questions/${params.id}`)
+      } catch(e){
+        console.log(e)
+      }
+      
+    };
+
+
+
+    return (
+        <div>
+          
+            <h1>Add Your Answer</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div>
+                    <textarea rows="10" cols="20" placeholder=" Write An Answer" class="form-control" {...register("answer", { required: "Required" })} required ></textarea>
+                </div >
+
+                <div>
+                    <button type="submit" className="btn btn-primary  class1" >Submit</button>
+                </div>
 
 
 
