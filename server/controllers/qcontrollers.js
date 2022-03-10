@@ -57,13 +57,14 @@ const createQuestion = async (req, res) => {
         await Question.create({
             question: body.question,
             description: body.description,
-            user: user.id
+            // user: user.id
         })
         res.status(201).send('created')
     } catch (error) {
         console.error(error)
         const errorsList = handleQuestionsError(error)
-        res.render("questions/createQuestionForm", { pageTitle:"Add Questions",errorsList })
+        res.status(400).send(errorsList)
+        // res.render("questions/createQuestionForm", { pageTitle:"Add Questions",errorsList })
     }
 
 

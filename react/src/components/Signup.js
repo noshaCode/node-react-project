@@ -36,19 +36,19 @@ export default function SignUp () {
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <div>
-          <input type="text" placeholder="Enter Name" {...register("name", { required: "Required" })} required></input>
+          <input type="text" placeholder="Enter Name" className="form-control" {...register("name", { required: "Required" })} required></input>
         </div>
 
         <div>
-          <input type="email" placeholder="Enter Email" {...register("email", { required: "Required" })} required ></input>
+          <input type="email" placeholder="Enter Email" className="form-control" {...register("email", { required: "Required" })} required ></input>
         </div >
 
         <div>
-          <input type="password"  placeholder="Enter Password" {...register("password", { required: "Required" })} required></input>
+          <input type="password"  placeholder="Enter Password" className="form-control" {...register("password", { required: "Required" })} required></input>
         </div >
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn btn-primary  class1 ">Submit</button>
         </div>
 
       </form>

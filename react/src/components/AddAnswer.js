@@ -52,16 +52,15 @@ export default function ReadQuestion() {
 
     return (
         <div>
-            <p>{params.id}</p>
-
+          
             <h1>Add Your Answer</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <textarea rows="10" cols="20" placeholder=" Write An Answer" {...register("answer", { required: "Required" })} required ></textarea>
+                    <textarea rows="10" cols="20" placeholder=" Write An Answer" class="form-control" {...register("answer", { required: "Required" })} required ></textarea>
                 </div >
 
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="btn btn-primary  class1" >Submit</button>
                 </div>
 
 

@@ -31,12 +31,12 @@ export default function CreateQuestion() {
   return (
     <div>
 
-      <p>CreateQuestion</p>
+      <p>Add Question </p>
 
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <div>
-          <input type="text" placeholder="Question" {...register("question", { required: "Required" })} />
+          <input type="text" placeholder="Question"  class="form-control"{...register("question", { required: "Required" })} />
         </div>
 
         <div>
@@ -44,7 +44,7 @@ export default function CreateQuestion() {
         </div>
 
         <div>
-          <textarea rows="10" cols="20" placeholder="Description" {...register("description", { required: "Required" })}></textarea>
+          <textarea rows="10" cols="20" placeholder="Description" class="form-control" {...register("description", { required: "Required" })}></textarea>
         </div >
 
         <div>

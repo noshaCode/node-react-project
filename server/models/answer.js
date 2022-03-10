@@ -10,7 +10,7 @@ const answerSchema = new Schema({
      answer: {
           type: String,
           required: [true,"Please enter an Answer"],
-          minlength: [10,"Minimum question length is 10characters"]
+          minlength: [2,"Minimum question length is 2 characters"]
      },
      user:{
           type: Schema.Types.ObjectId,

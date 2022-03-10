@@ -73,10 +73,14 @@ export default function ReadQuestion() {
     <div>
     {response && 
       <>
+       <br/>
+      <div className="form-control">
+        
         <p>{response.question.question} </p>
         <p>{response.question.description} </p>
 
-     
+        </div>
+        <br/>
 
         <button onClick={handleEdit} className="btn btn-primary  class1 ">Edit Question</button>
 
@@ -90,7 +94,7 @@ export default function ReadQuestion() {
       
     
 
-     <button   onClick={handleAddAnswer} >Add Answer </button>
+     <button   onClick={handleAddAnswer} className="btn btn-primary  class1" >Add Answer </button>
 
      <div>
         {response.answer && response.answer.map((item)=> {

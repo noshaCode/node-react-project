@@ -14,7 +14,7 @@ export default function Navbar() {
         :(
           <>
             <li><i className="fas fa-sign-in-alt"></i><Link to="/signup">Signup</Link></li>
-            <li><i className="fas fa-sign-in-alt"></i><Link to="/login">Login</Link></li>
+            <li><i className="fas fa-sign-in-alt" ></i><Link to="/login">Login</Link></li>
           </>
           )}
 
