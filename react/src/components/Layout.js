@@ -19,6 +19,7 @@ export default function Layout() {
 
   return (
     <>
+    
     <div className={`custom-container ${navClass}`}>
         <div className="circle-container">
         <div className="circle">

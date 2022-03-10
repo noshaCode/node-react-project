@@ -20,7 +20,10 @@ function App() {
   const [user, setUser] = useState(null);
 
   return (
+
+    
     <UserContext.Provider value={{user:user, setUser: setUser}}>
+     
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<QuestionsList />} />

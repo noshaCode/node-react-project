@@ -47,7 +47,7 @@ const [loginResponse,setLoginResponse] = useState({
  
     return (
       <div>
-        <h3>Login</h3>
+        <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <input name='email' type="text" placeholder='email' className="form-control" onChange={handleChange} />
           <input name='password' type="password" placeholder='password'className="form-control" onChange={handleChange} />
