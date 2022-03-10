@@ -10,6 +10,7 @@ import Signup from './components/Signup';
 import EditQuestion from './components/EditQuestion';
 import LogIn from './components/LogIn'
 import AddAnswer from './components/AddAnswer'
+import EditAnswer from './components/EditAnswer'
 
 
 export const UserContext = React.createContext(null)
@@ -35,6 +36,7 @@ function App() {
                 <Route path=":id" element={<ReadQuestion/>} /> 
 
           <Route path="addanswer/:id" element={<AddAnswer/>} /> 
+          <Route path="editanswer/:id" element={<EditAnswer/>} />
                 
                 <Route path="new" element={<CreateQuestion/>} />
                 <Route path="edit/:id" element={<EditQuestion/>} />

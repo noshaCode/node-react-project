@@ -2,6 +2,7 @@ import React, { useContext, useEffect ,useState} from 'react'
 import { Navigate, useNavigate, useParams  } from 'react-router-dom'
 import { UserContext } from '../App'
 import axios from '../axios'
+import { useForm } from "react-hook-form"
 
 
 
@@ -23,8 +24,6 @@ export default function ReadQuestion() {
           const readQuestion = await axios.get(`/question/${params.id}`);
           console.log("read",readQuestion.data.answer)
           setResponse(readQuestion.data)
-
-          //const readAnswer = await axios.get(`/question/${params.id}`);
 
       } catch (e) {
           console.error('Error', e)
@@ -55,8 +54,34 @@ export default function ReadQuestion() {
 
   }
 
+  const handleEditAnswer = (id,e) =>{
+    e.preventDefault();
+    navigate(
+      `/questions/editanswer/${id}`,{
+      state: {
+        question: response.question.question, 
+        description: response.question.description
+      }
+    }
+  )
+  }
+
   
-  const handleAddAnswer = () => {
+  const handleDeleteAnswer = (id,e) =>{
+    e.preventDefault();
+   // console.log(response.answer[0]._id, id)
+    //axios.get(`/delete/answer/${response.answer[0]._id}`)
+    axios.get(`/delete/answer/${id}`)
+    .then(()=>{
+      //navigate(`/questions/${params.id}`)
+      window.location.reload(true);
+    })
+    .catch((e)=>{
+      console.log(e)
+    })
+  }
+
+    const handleAddAnswer = () => {
     navigate(
         `/questions/addanswer/${params.id}`,{
         state: {
@@ -73,25 +98,19 @@ export default function ReadQuestion() {
     <div>
     {response && 
       <>
-        <p>{response.question.question} </p>
-        <p>{response.question.description} </p>
+      <div className="card q-card">
+        <h3  className="card-title">{response.question.question} </h3>
+        <p className="card-text">{response.question.description} </p>
 
-     
+     </div>
 
         <button onClick={handleEdit} className="btn btn-primary  class1 ">Edit Question</button>
 
         <button onClick={handleDelete} className="btn btn-primary  class1 ">Delete Question</button>
       
-    
 
-
-        
-       <p>{response.answer.answer} </p>
-      
-    
-
-     <button   onClick={handleAddAnswer} >Add Answer </button>
-
+     <button  onClick={handleAddAnswer}   className="btn btn-primary  class2"> Add Answer </button>
+ 
      <div>
         {response.answer && response.answer.map((item)=> {
             return (
@@ -104,29 +123,21 @@ export default function ReadQuestion() {
                             { item.answer }
                         </p>
                         <div className=" create-date">
-                        <p>Created By: { item?.user?.name }
-                            <br/>
+                        <p>Created at:{ item?.user?.name }
                             { new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'short' }).format(new Date(item.updatedAt)) }
                         </p>
+                        <button onClick={(e) => handleDeleteAnswer(item._id,e)} className="btn btn-primary  class1 ">Delete Answer</button>
+                        <button onClick={(e) => handleEditAnswer(item._id,e)} className="btn btn-primary  class1 ">Edit Answer</button>
                         </div>
                     </div>
                 </div>
                 </div>
-
-
             )
         })}
     </div>
-
-
      </>
-
      }
   </div>
-
-
- 
-    
 
   )
 }

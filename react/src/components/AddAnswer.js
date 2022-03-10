@@ -7,67 +7,69 @@ import { useForm } from "react-hook-form"
 
 
 export default function ReadQuestion() {
-    const navigate = useNavigate()
-    const params = useParams() //get the value that change
-    const { user } = useContext(UserContext)
-    const [response, setResponse] = useState(null);
+  const navigate = useNavigate()
+  const params = useParams() //get the value that change
+  const { user } = useContext(UserContext)
+  const [response, setResponse] = useState(null);
+
+
+  const { handleSubmit, register, formState: { errors } } = useForm();
+
+
+  useEffect(()=>{
+    getQuestion()
+     
+  },[])
+
+
+  const getQuestion = async() => {
+    try {
+        const readQuestion = await axios.get(`/question/${params.id}`);
+        console.log("read",readQuestion.data.answer)
+        setResponse(readQuestion.data)
+
+    } catch (e) {
+        console.error('Error', e)
+    }
+}
+
+  const onSubmit = async (values) => {
+    //call post
+    try {
+      console.log(values)
+      const responseAnswer = await axios.post(`/new/answer/${params.id}`, values)
+      console.log('response', responseAnswer.data)
+      navigate(`/questions/${params.id}`)
+    } catch (e) {
+      console.log(e)
+    }
+  };
 
 
 
-    // useEffect(() => {
-    //     getQuestion()
 
-    // }, [])
+  return (
+  
+  <div>
+    {console.log(params)}
+    {response && 
+      <>
+     <p>{response.question.question} </p>
+        <p>{response.question.description} </p>
 
-
-    // const getQuestion = async () => {
-    //     try {
-    //         const readQuestion = await axios.get(`/question/${params.id}`);
-    //         console.log("read", readQuestion.data)
-    //         //setResponse(readQuestion.data)
-    //     } catch (e) {
-    //         console.error('Error', e)
-    //     }
-    // }
-   
-
-    const { handleSubmit, register, formState: { errors } } = useForm();
-    
-    
-    const onSubmit = async (values) =>{ 
-      
-      //call post
-      try{
-        console.log(values)
-        const response = await axios.post(`/new/answer/${params.id}`,  values)
-        console.log('response', response.data)
-        navigate(`/questions/${params.id}`)
-      } catch(e){
-        console.log(e)
-      }
-      
-    };
-
-
-
-    return (
+      <h1>Add Your Answer</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-            <p>{params.id}</p>
+          <textarea rows="10" cols="20" class="form-control" placeholder=" Write An Answer" {...register("answer", { required: "Required" })} required ></textarea>
+        </div >
 
-            <h1>Add Your Answer</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <textarea rows="10" cols="20" placeholder=" Write An Answer" {...register("answer", { required: "Required" })} required ></textarea>
-                </div >
-
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-
-
-            </form>
+        <div>
+          <button type="submit"  className="btn btn-primary  class1 " >Add Answer</button>
         </div>
-
-
-    )
+      </form>
+    
+    </>
+    }
+    </div>
+  )
 }
