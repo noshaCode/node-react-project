@@ -51,6 +51,7 @@ export default function ReadQuestion() {
   return (
 
     <div>
+      
       {console.log(params)}
       {response &&
         <>

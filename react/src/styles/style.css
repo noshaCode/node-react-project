@@ -123,3 +123,17 @@ margin-bottom: 5px;
 h1{
     color: #ff7979;
 }
+
+
+.img-login{
+    height: 450px;
+    width: 1000px;
+    margin-top: 1rem;
+    margin-left: 6rem;
+}
+
+.img-signup{
+    margin-left: 10rem;
+    height: 450px;
+    width: 900px;
+}

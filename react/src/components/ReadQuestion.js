@@ -96,9 +96,12 @@ export default function ReadQuestion() {
 
   return (
     <div>
+      
+<h2>Question :</h2>
+
     {response && 
       <>
-<h2>Question :</h2>
+      
       <div className="card q-card">
         <h3  className="card-title">{response.question.question} </h3>
         <p className="card-text">{response.question.description} </p>
@@ -146,6 +149,7 @@ export default function ReadQuestion() {
     </div>
      </>
      }
+     
   </div>
 
   )
