@@ -31,7 +31,7 @@ export default function SignUp () {
   return (
     <div>
 
-      <h1>Register Page</h1>
+      <h2>Register Page</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
 

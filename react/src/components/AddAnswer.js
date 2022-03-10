@@ -16,23 +16,22 @@ export default function ReadQuestion() {
   const { handleSubmit, register, formState: { errors } } = useForm();
 
 
-  useEffect(()=>{
+  useEffect(() => {
     getQuestion()
-     
-  },[])
+
+  }, [])
 
 
-  const getQuestion = async() => {
+  const getQuestion = async () => {
     try {
-        const readQuestion = await axios.get(`/question/${params.id}`);
-        console.log("read",readQuestion.data.answer)
-        setResponse(readQuestion.data)
-
+      const readQuestion = await axios.get(`/question/${params.id}`);
+      console.log("read", readQuestion.data.answer)
+      setResponse(readQuestion.data)
 
     } catch (e) {
-        console.error('Error', e)
+      console.error('Error', e)
     }
-}
+  }
 
   const onSubmit = async (values) => {
     //call post
@@ -47,62 +46,31 @@ export default function ReadQuestion() {
   };
 
 
-    const { handleSubmit, register, formState: { errors } } = useForm();
-    
-    
-    const onSubmit = async (values) =>{ 
-      
-      //call post
-      try{
-        console.log(values)
-        const response = await axios.post(`/new/answer/${params.id}`,  values)
-        console.log('response', response.data)
-        navigate(`/questions/${params.id}`)
-      } catch(e){
-        console.log(e)
-      }
-      
-    };
-
-
-
-    return (
-        <div>
-          
-            <h1>Add Your Answer</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <textarea rows="10" cols="20" placeholder=" Write An Answer" class="form-control" {...register("answer", { required: "Required" })} required ></textarea>
-                </div >
-
-                <div>
-                    <button type="submit" className="btn btn-primary  class1" >Submit</button>
-                </div>
-
 
 
   return (
-  
-  <div>
-    {console.log(params)}
-    {response && 
-      <>
-     <p>{response.question.question} </p>
-        <p>{response.question.description} </p>
 
-      <h1>Add Your Answer</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <textarea rows="10" cols="20" class="form-control" placeholder=" Write An Answer" {...register("answer", { required: "Required" })} required ></textarea>
-        </div >
+    <div>
+      {console.log(params)}
+      {response &&
+        <>
+          <div className="card q-card">
+          <h3  className="card-title">{response.question.question} </h3>
+          <p className="card-text">{response.question.description} </p>
+          </div>
+          <h2>Add Your Answer :</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <textarea rows="10" cols="20" class="form-control" placeholder=" Write An Answer" {...register("answer", { required: "Required" })} required ></textarea>
+            </div >
 
-        <div>
-          <button type="submit"  className="btn btn-primary  class1 " >Add Answer</button>
-        </div>
-      </form>
-    
-    </>
-    }
-    </div>
+            <div>
+              <button type="submit" className="btn btn-primary  class1 " >Add Answer</button>
+            </div>
+          </form>
+
+        </>
+      }
+    </div >
   )
 }

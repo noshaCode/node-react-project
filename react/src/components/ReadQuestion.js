@@ -98,52 +98,39 @@ export default function ReadQuestion() {
     <div>
     {response && 
       <>
-
+<h2>Question :</h2>
       <div className="card q-card">
         <h3  className="card-title">{response.question.question} </h3>
         <p className="card-text">{response.question.description} </p>
 
      </div>
 
-       <br/>
-      <div className="form-control">
+       
         
-        <p>{response.question.question} </p>
-        <p>{response.question.description} </p>
-
-        </div>
-        <br/>
 
 
         <button onClick={handleEdit} className="btn btn-primary  class1 ">Edit Question</button>
 
         <button onClick={handleDelete} className="btn btn-primary  class1 ">Delete Question</button>
       
+     <button  onClick={handleAddAnswer}   className="btn btn-primary  class1"> Add Answer </button>
+     
+     <p>{response.answer.answer} </p>
 
 
-
-
-        
-       <p>{response.answer.answer} </p>
-      
-    
-
-     <button   onClick={handleAddAnswer} className="btn btn-primary  class1" >Add Answer </button>
-
-
-     <button  onClick={handleAddAnswer}   className="btn btn-primary  class2"> Add Answer </button>
- 
-     <div>
+ <h2> Answers :</h2>
+ <br/>
+     <div className=' row'>
         {response.answer && response.answer.map((item)=> {
             return (
 
-                <div key={item._id} className="col-sm-6 all-card">
+                <div key={item._id} className="col-sm-6 all-card   answer-card2">
                 <div className="card">
-                    <div className="card-body">
+                    <div className="card-body  ">
                         
-                        <p className="card-text">
+                        <h4 className="card-text">
                             { item.answer }
-                        </p>
+                        </h4>
                         <div className=" create-date">
                         <p>Created at:{ item?.user?.name }
                             { new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'short' }).format(new Date(item.updatedAt)) }

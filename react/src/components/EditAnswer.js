@@ -51,20 +51,23 @@ export default function ReadQuestion() {
   return (
   
   <div>
+    <h2>Question :</h2>
     {console.log(response)}
     {response && 
       <>
-     <p>{response.question.question} </p>
-        <p>{response.question.description} </p>
-
-      <h1>EditYour Answer</h1>
+     
+     <div className="card q-card">
+          <h3  className="card-title">{response.question.question} </h3>
+          <p className="card-text">{response.question.description} </p>
+          </div>
+      <h2>Edit Your Answer:</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <textarea rows="10" cols="20" placeholder=" Edit An Answer" {...register("answer", { required: "Required" })} required >{response.answerToEdit.answer}</textarea>
+          <textarea class="form-control" rows="10" cols="20" placeholder=" Edit An Answer" {...register("answer", { required: "Required" })} required >{response.answerToEdit.answer}</textarea>
         </div >
 
         <div>
-          <button type="submit">Update</button>
+          <button  className="btn btn-primary  class1 " type="submit">Update</button>
         </div>
       </form>
     

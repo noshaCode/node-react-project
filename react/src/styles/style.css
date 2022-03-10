@@ -108,10 +108,6 @@ margin-bottom: 5px;
     margin-left: 1rem;
 }
 
-.class2{
-    margin-left: 7rem;
-    margin-top: 1rem;
-  }
 
   .q-card{
    margin-top: 4rem;
@@ -119,3 +115,11 @@ margin-bottom: 5px;
    padding: 2rem;
    
   }
+
+  h2{
+      margin-top: 2rem;
+      color: #ff7979;
+  }
+h1{
+    color: #ff7979;
+}

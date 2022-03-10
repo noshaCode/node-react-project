@@ -13,7 +13,7 @@ const answerSchema = new Schema({
 
           minlength: [3,"Minimum question length is 10characters"]
 
-          minlength: [2,"Minimum question length is 2 characters"]
+          
 
      },
      user:{

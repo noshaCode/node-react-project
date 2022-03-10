@@ -6,7 +6,9 @@ export default function Navbar() {
   const { user } = useContext(UserContext)
 
   return (
+    
     <nav>
+      
       <ul>
         {/* <li> Hello {user && user.name}</li> */}
         <li><i className="fas fa-home"></i><Link to="/">Home</Link></li>

@@ -23,6 +23,7 @@ function QuestionsList(props) {
 
   return (
     <div className='row'>
+         <h1> Q&A Community</h1>
         {questions && questions.map((item)=> {
             return (
 
